@@ -1,2 +1,18 @@
 node_modules/
 .env
+
+# Ignore Robot Framework output files
+output.xml
+report.html
+log.html
+
+# Ignore screenshots (common extensions)
+*.png
+*.jpg
+*.jpeg
+
+# JetBrains IDEs
+.idea/
+
+#lib
+__pycache__/
