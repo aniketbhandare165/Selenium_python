@@ -6,9 +6,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Chrome()
-driver.implicitly_wait(2)
-# 5 seconds is max time out 2 seconds (3 seconds save)
-
+driver.implicitly_wait(3)
 driver.get("https://rahulshettyacademy.com/seleniumPractise/#/")
 driver.find_element(By.XPATH,"//input[@type='search']").send_keys("ber")
 time.sleep(2)
@@ -33,7 +31,20 @@ for price in prices:
     sum = sum + int(price.text)
 print(sum)
 totalAmount = int(driver.find_element(By.XPATH,"//span[@class ='totAmt']").text)
-
 assert sum == totalAmount
 
+discount_amt = float(driver.find_element(By.XPATH,"//span[@class='discountAmt']").text)
+orig_amt = int(driver.find_element(By.XPATH,"//span[@class='totAmt']").text)
+assert discount_amt < orig_amt
 
+driver.back()
+driver.find_element(By.XPATH,"//input[@type='search']").send_keys("ber")
+time.sleep(2)
+Expected_list = ["Cucumber - 1 Kg","Raspberry - 1/4 Kg","Strawberry - 1/4 Kg"]
+runtime_list = []
+sample_list = driver.find_elements(By.XPATH,"//div[@class='products']/descendant::h4")
+for element in sample_list:
+    runtime_list.append(element.text)
+print(runtime_list)
+assert Expected_list == runtime_list
+# Expected_list = [""]
