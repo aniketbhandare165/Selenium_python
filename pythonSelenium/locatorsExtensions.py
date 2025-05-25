@@ -15,3 +15,6 @@ driver.find_element(By.CSS_SELECTOR, "#confirmPassword").send_keys("hello@1234")
 # driver.find_element(By.XPATH, "//button[@type='submit']").click()
 driver.find_element(By.XPATH, "//button[text()='Save New Password']").click()
 time.sleep(2)
+
+# modeFRONTIER :- it is multidisciplinary design optimization platform which streamlines engineering designs through
+# workflow based environment And multi objective optimization algorithm to reduce cost and time while enhancing results.

@@ -25,7 +25,7 @@ fruit_name = "Apple"
 newvalue="999"
 driver = webdriver.Chrome()
 driver.get("https://rahulshettyacademy.com/upload-download-test/")
-driver.implicitly_wait(10)
+driver.implicitly_wait(3)
 driver.find_element(By.ID,"downloadButton").click()
 time.sleep(6)
 # Edit excel with updated value
