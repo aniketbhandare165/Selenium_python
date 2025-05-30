@@ -1,7 +1,7 @@
 import os
 import sys
 
-
+# from Selenium.pageObjects import checkoutConfirmation
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -12,6 +12,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from pageObjects.login import LoginPage
 from pageObjects.shopPage import ShopPage
+from pageObjects.checkoutConfirmation import CheckoutConfirmation
 
 
 def test_e2e(browserInstance):
@@ -23,13 +24,7 @@ def test_e2e(browserInstance):
     shop_page = ShopPage(driver)
     shop_page.add_product_to_cart("Blackberry")
     shop_page.goTOCart()
+    checkoutConfirmation.checkout()
+    checkoutConfirmation.enter_delivery_address("ind")
+    checkoutConfirmation.validate_order()
 
-    driver.find_element(By.XPATH, "//button[@class='btn btn-success']").click()
-    driver.find_element(By.ID, "country").send_keys("ind")
-    wait = WebDriverWait(driver, 10)
-    wait.until(expected_conditions.presence_of_element_located((By.LINK_TEXT, "India")))
-    driver.find_element(By.LINK_TEXT, "India").click()
-    driver.find_element(By.XPATH, "//div[@class='checkbox checkbox-primary']").click()
-    driver.find_element(By.XPATH, "//input[@type='submit']").click()
-    successText = driver.find_element(By.CLASS_NAME, "alert-success").text
-    assert 'Success! Thank you!' in successText
