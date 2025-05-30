@@ -18,12 +18,11 @@ def test_e2e(browserInstance):
     driver = browserInstance
     # driver.get("https://rahulshettyacademy.com/loginpagePractise/")
     # loginpage = LoginPage(driver)
-    # loginpage.login()
+    # shop_page = loginpage.login()
     driver.get("https://rahulshettyacademy.com/angularpractice/shop")
     shop_page = ShopPage(driver)
     shop_page.add_product_to_cart("Blackberry")
     shop_page.goTOCart()
-
 
     driver.find_element(By.XPATH, "//button[@class='btn btn-success']").click()
     driver.find_element(By.ID, "country").send_keys("ind")
