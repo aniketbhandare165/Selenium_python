@@ -2,8 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
-
-class CheckoutConfirmation:
+class Checkout_Confirmation:
     def __init__(self,driver):
         self.driver = driver
         self.checkout_button = (By.XPATH, "//button[@class='btn btn-success']")

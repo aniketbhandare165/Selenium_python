@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
-from pageObjects.checkoutConfirmation import CheckoutConfirmation
+
+from .checkout_confirmation import Checkout_Confirmation
 
 class ShopPage:
     def __init__(self,driver):
@@ -16,6 +17,6 @@ class ShopPage:
 
     def goTOCart(self):
         self.driver.find_element(*self.checkout_button).click()
-        checkoutConfirmation = CheckoutConfirmation(self.driver)
-        return checkoutConfirmation
+        checkout_page = Checkout_Confirmation(self.driver)
+        return checkout_page
 

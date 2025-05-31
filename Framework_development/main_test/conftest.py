@@ -11,9 +11,8 @@ def browserInstance(request):
     browser_name = request.config.getoption("browser_name")
     if browser_name == 'chrome': #
         driver = webdriver.Chrome()
-        driver.implicitly_wait(4)
     elif browser_name == "firefox":
         driver = webdriver.Firefox()
-        driver.implicitly_wait(4)
+    driver.implicitly_wait(5)
     yield driver  #Before test function execution
     driver.close() #post your test function execution
