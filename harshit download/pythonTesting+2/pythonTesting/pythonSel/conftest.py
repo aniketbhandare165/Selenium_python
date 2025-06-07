@@ -2,24 +2,29 @@ import os
 
 import pytest
 from selenium import webdriver
-
+from selenium.webdriver.chrome.service import Service
 driver = None
+
 def pytest_addoption(parser):
     parser.addoption(
         "--browser_name", action="store", default="chrome", help="browser selection"
     )
 
-@pytest.fixture(scope="function")
+
+@pytest.fixture( scope="function" )
 def browserInstance(request):
     global driver
-    browser_name = request.config.getoption("browser_name")
-    if browser_name == 'chrome': #
-        driver = webdriver.Chrome()
+    browser_name = request.config.getoption( "browser_name" )
+    service_obj = Service()
+    if browser_name == "chrome":  #firefox
+        driver = webdriver.Chrome( service=service_obj )
     elif browser_name == "firefox":
-        driver = webdriver.Firefox()
-    driver.implicitly_wait(5)
+        driver = webdriver.Firefox( service=service_obj )
+
+    driver.implicitly_wait( 5 )
+    driver.get( "https://rahulshettyacademy.com/loginpagePractise/" )
     yield driver  #Before test function execution
-    driver.close() #post your test function execution
+    driver.close()  #post your test function execution
 
 
 @pytest.hookimpl( hookwrapper=True )
@@ -45,6 +50,7 @@ def pytest_runtest_makereport(item):
                        'onclick="window.open(this.src)" align="right"/></div>' % file_name
                 extra.append( pytest_html.extras.html( html ) )
         report.extras = extra
+
 
 def _capture_screenshot(file_name):
     driver.get_screenshot_as_file(file_name)

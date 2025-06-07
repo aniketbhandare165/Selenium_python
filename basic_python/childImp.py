@@ -1,4 +1,4 @@
-from Selenium.basic_python.Oppsdemo import Calculator
+from Selenium_project.basic_python.Oppsdemo import Calculator
 
 
 class ChildImp(Calculator):

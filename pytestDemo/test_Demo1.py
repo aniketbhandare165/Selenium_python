@@ -12,6 +12,8 @@
 # and make it available to all test cases
 # datadriven and parameterization can be done with return statements in tuple format
 #when you define fixture scope to class only, it will run once before class is initiated and at the end after class level is executed
+#pytest-m smoke //tagging
+#pytest -n 10 //pytest-xdist plugin you need to run in parallel
 
 import pytest
 
